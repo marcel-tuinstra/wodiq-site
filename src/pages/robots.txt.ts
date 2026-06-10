@@ -4,7 +4,7 @@ export const GET: APIRoute = () => new Response(
   [
     'User-agent: *',
     'Allow: /',
-    'Sitemap: https://wodiq.nl/sitemap-index.xml'
+    'Sitemap: https://wodiq.nl/sitemap.xml'
   ].join('\n'),
   {
     headers: {
