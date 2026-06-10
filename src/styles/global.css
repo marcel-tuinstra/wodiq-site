@@ -357,6 +357,14 @@ h3 {
   line-height: 1.5;
 }
 
+.floating-title {
+  margin-bottom: 6px !important;
+  color: var(--text-strong) !important;
+  font-size: 1rem !important;
+  font-weight: 900;
+  line-height: 1.25 !important;
+}
+
 .mini-progress {
   height: 8px;
   margin-bottom: 16px;
@@ -437,6 +445,11 @@ h3 {
   background: var(--surface);
   border-radius: 26px;
   box-shadow: inset 0 0 0 1px var(--border), var(--shadow-md);
+}
+
+.screenshot-card picture,
+.phone-frame picture {
+  display: block;
 }
 
 .screenshot-card img {

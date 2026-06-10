@@ -1,0 +1,11 @@
+# WODIQ
+
+WODIQ is an AI workout planner for choosing what to train today. The marketing and legal website is published at https://wodiq.nl, while the product app is hosted at https://wodiq.app.
+
+## Key Pages
+
+- [Homepage](https://wodiq.nl/)
+- [Dutch homepage](https://wodiq.nl/nl/)
+- [Privacy policy](https://wodiq.nl/privacy/)
+- [Terms](https://wodiq.nl/terms/)
+- [TestFlight pilot](https://testflight.apple.com/join/VHNX9gkJ)

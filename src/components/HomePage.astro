@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets'
 import planGoal from '../assets/screenshots/en-mobile-plan-goal.png'
 import configureWorkout from '../assets/screenshots/en-mobile-configure-workout.png'
 import activities from '../assets/screenshots/en-mobile-activities.png'
@@ -44,11 +45,19 @@ const screenshots = [
     </div>
     <div class="hero-board" aria-label={locale === 'en' ? 'WODIQ app preview' : 'WODIQ app voorbeeld'}>
       <div class="phone-frame">
-        <img src={localeScreenshots[0].src} width={localeScreenshots[0].width} height={localeScreenshots[0].height} alt={locale === 'en' ? 'WODIQ app screen for choosing a goal or sport.' : 'WODIQ appscherm om een doel of sport te kiezen.'} loading="eager" decoding="async" />
+        <Picture
+          src={localeScreenshots[0]}
+          formats={['avif', 'webp']}
+          widths={[310, 360, 390]}
+          sizes="(max-width: 720px) 310px, 360px"
+          alt={locale === 'en' ? 'WODIQ app screen for choosing a goal or sport.' : 'WODIQ appscherm om een doel of sport te kiezen.'}
+          loading="eager"
+          decoding="async"
+        />
       </div>
       <div class="floating-card">
         <div class="mini-progress"><span></span></div>
-        <h3>{locale === 'en' ? 'Structured output' : 'Gestructureerde output'}</h3>
+        <p class="floating-title">{locale === 'en' ? 'Structured output' : 'Gestructureerde output'}</p>
         <p>{locale === 'en' ? 'Warm-up, main block, cooldown, duration, effort cues, and a clear reason for the session.' : 'Warm-up, hoofdblok, cooldown, duur, inspanningscue en een duidelijke reden voor de sessie.'}</p>
       </div>
     </div>
@@ -82,7 +91,15 @@ const screenshots = [
       <div class="screenshots">
         {screenshots.map((shot) => (
           <figure class="screenshot-card">
-            <img src={shot.src.src} width={shot.src.width} height={shot.src.height} alt={shot.alt} loading="eager" decoding="async" />
+            <Picture
+              src={shot.src}
+              formats={['avif', 'webp']}
+              widths={[280, 330, 390]}
+              sizes="(max-width: 720px) 280px, (max-width: 1180px) 31vw, 360px"
+              alt={shot.alt}
+              loading="lazy"
+              decoding="async"
+            />
             <figcaption>{shot.caption}</figcaption>
           </figure>
         ))}
