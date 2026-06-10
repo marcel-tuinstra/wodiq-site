@@ -7,7 +7,7 @@
 - Confirm reverse proxy maps `wodiq.nl` to host port `3014`.
 - Confirm `wodiq.app` keeps product app traffic separate.
 - Confirm GitHub Actions secrets/vars are available through `marcel-tuinstra/devops`.
-- Confirm `PUBLIC_GA_MEASUREMENT_ID` is configured as a repository variable if GA should be enabled.
+- Confirm `PUBLIC_GA_MEASUREMENT_ID=G-TX1BMCPYHM` is configured as a repository variable if GA should be enabled.
 - Confirm GHCR package permissions for `ghcr.io/marcel-tuinstra/wodiq-site`.
 
 ## Validation
@@ -33,7 +33,7 @@ curl -I http://localhost:3014/
 
 ## Analytics Decision
 
-Current choice: Google Analytics 4 is prepared and documented, but only loads when `PUBLIC_GA_MEASUREMENT_ID` is set at build time.
+Current choice: Google Analytics 4 is prepared and documented, but only loads when `PUBLIC_GA_MEASUREMENT_ID` is set at build time. The WODIQ GA4 measurement ID is `G-TX1BMCPYHM`.
 
 Use GA only to answer:
 

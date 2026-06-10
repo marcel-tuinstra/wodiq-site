@@ -35,8 +35,8 @@ const screenshots = [
       <h1 class="hero-title">{t.hero.title}</h1>
       <p class="lede">{t.hero.description}</p>
       <div class="hero-actions">
-        <a class="button button-amber" href={site.betaUrl}>{t.hero.primaryCta}</a>
-        <a class="text-button" href={site.appUrl}>{t.hero.secondaryCta}</a>
+        <a class="button button-amber" href={site.betaUrl} data-analytics="hero_testflight">{t.hero.primaryCta}</a>
+        <a class="text-button" href={site.appUrl} data-analytics="hero_web_app">{t.hero.secondaryCta}</a>
       </div>
       <ul class="trust-row" aria-label={locale === 'en' ? 'Highlights' : 'Highlights'}>
         {t.hero.trust.map((item) => <li class="chip">{item}</li>)}
@@ -158,7 +158,7 @@ const screenshots = [
           <h2>{t.finalCta.title}</h2>
           <p>{t.finalCta.text}</p>
         </div>
-        <a class="button button-amber" href={site.betaUrl}>{t.finalCta.primaryCta}</a>
+        <a class="button button-amber" href={site.betaUrl} data-analytics="final_testflight">{t.finalCta.primaryCta}</a>
       </div>
     </div>
   </section>

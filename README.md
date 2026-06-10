@@ -43,17 +43,17 @@ Staging is manual through GitHub Actions and uses host port `3112`.
 
 ## Analytics
 
-Google Analytics 4 is prepared but opt-in at build time. Set `PUBLIC_GA_MEASUREMENT_ID` to a GA4 measurement ID, for example `G-XXXXXXXXXX`, before building to include the GA script.
+Google Analytics 4 is prepared but opt-in at build time. Set `PUBLIC_GA_MEASUREMENT_ID` to the WODIQ GA4 measurement ID, `G-TX1BMCPYHM`, before building to include the GA script.
 
 For Docker builds:
 
 ```bash
-docker build --build-arg PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX -t ghcr.io/marcel-tuinstra/wodiq-site:local .
+docker build --build-arg PUBLIC_GA_MEASUREMENT_ID=G-TX1BMCPYHM -t ghcr.io/marcel-tuinstra/wodiq-site:local .
 ```
 
 The privacy policy already documents website analytics. If a different analytics provider is added later, update the privacy policy and launch checklist in the same change.
 
-Keep the marketing-site toolset minimal: GA4 for traffic/conversion, Google Search Console for indexing, and Sentry only if there is meaningful client-side runtime error reporting to capture. Do not add heatmaps, ad pixels, chat widgets, or broad product analytics by default.
+Keep the marketing-site toolset minimal: GA4 for traffic/conversion, Google Search Console for indexing, and Sentry only if there is meaningful client-side runtime error reporting to capture. CTA clicks are tracked through GA4 as `cta_click` events using `data-analytics` IDs. Do not add heatmaps, ad pixels, chat widgets, or broad product analytics by default.
 
 ## Pilot Access
 

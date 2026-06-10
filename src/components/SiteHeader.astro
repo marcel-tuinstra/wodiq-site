@@ -23,8 +23,8 @@ const alternate = locale === 'en' ? localePaths.nl.home : localePaths.en.home
       <a href={`${current.home}#pricing`}>{nav.pricing}</a>
       <a href={`${current.home}#faq`}>{nav.faq}</a>
       <a href={current.privacy}>{nav.privacy}</a>
-      <a class="language-toggle" href={alternate}>{nav.language}</a>
-      <a class="button button-primary" href={site.betaUrl}>{locale === 'en' ? 'TestFlight' : 'TestFlight'}</a>
+      <a class="language-toggle" href={alternate} data-analytics="language_switch">{nav.language}</a>
+      <a class="button button-primary" href={site.betaUrl} data-analytics="header_testflight">{locale === 'en' ? 'TestFlight' : 'TestFlight'}</a>
     </div>
   </nav>
 </header>
