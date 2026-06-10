@@ -8,7 +8,7 @@ env:
 
 jobs:
   ci:
-    uses: marcel-tuinstra/devops/.github/workflows/reusable-ci.yml@v3
+    uses: marcel-tuinstra/devops/.github/workflows/reusable-ci.yml@v4
     with:
       node-version: "22"
       workdir: "."
