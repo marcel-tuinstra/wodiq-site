@@ -15,7 +15,7 @@ env:
 
 jobs:
   deploy:
-    uses: marcel-tuinstra/devops/.github/workflows/reusable-cd-nuxt-ssg.yml@v2
+    uses: marcel-tuinstra/devops/.github/workflows/reusable-cd-nuxt-ssg.yml@v3
     secrets: inherit
     with:
       service-name: wodiq-site
