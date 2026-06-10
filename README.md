@@ -53,6 +53,8 @@ docker build --build-arg PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX -t ghcr.io/marcel
 
 The privacy policy already documents website analytics. If a different analytics provider is added later, update the privacy policy and launch checklist in the same change.
 
+Keep the marketing-site toolset minimal: GA4 for traffic/conversion, Google Search Console for indexing, and Sentry only if there is meaningful client-side runtime error reporting to capture. Do not add heatmaps, ad pixels, chat widgets, or broad product analytics by default.
+
 ## Pilot Access
 
 The public beta CTA points to TestFlight:

@@ -35,10 +35,12 @@ curl -I http://localhost:3014/
 
 Current choice: Google Analytics 4 is prepared and documented, but only loads when `PUBLIC_GA_MEASUREMENT_ID` is set at build time.
 
-Use GA to answer:
+Use GA only to answer:
 
 - Which CTA gets used?
 - Does Dutch traffic convert differently?
 - Which competitor/SEO pages bring useful traffic?
 
-The privacy policy already includes website analytics. If another provider is added, update the privacy policy before deploy.
+Google Search Console should be connected after launch for indexing and sitemap visibility. Sentry is acceptable only if the site gains meaningful client-side runtime code; it is more useful in the WODIQ app than on a mostly static marketing site.
+
+Do not add heatmaps, Microsoft Clarity, ad pixels, chat widgets, broad product analytics, or email/CRM integrations by default. The privacy policy already includes website analytics. If another provider is added, update the privacy policy before deploy.

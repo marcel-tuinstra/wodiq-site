@@ -16,6 +16,7 @@ The site should explain WODIQ as an AI workout planner for deciding what to trai
 - Keep content local to this repo; do not make production builds depend on files in `../WODIQ`.
 - Production deploy follows the existing `site-marcel` / `site-tuinstra` pattern: GitHub Actions builds a Docker image, serves Astro `dist/` through nginx, and deploys with compose on the remote host.
 - Google Analytics 4 is prepared behind `PUBLIC_GA_MEASUREMENT_ID`. Do not add Plausible, Umami, or other analytics scripts unless the privacy policy and launch checklist are updated in the same change.
+- Keep integrations minimal for this marketing site. Google Search Console and GA4 are enough for launch; Sentry is acceptable for real runtime error reporting. Do not add Microsoft Clarity, heatmaps, ad pixels, product analytics, chat widgets, or CRM/email tools without an explicit product reason.
 
 ## Design Direction
 
