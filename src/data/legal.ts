@@ -70,8 +70,8 @@ export const privacyContent: Record<Locale, LegalContent> = {
       {
         title: 'Website analytics',
         body: [
-          'WODIQ may use Google Analytics 4 on wodiq.nl to understand aggregate website traffic, page usage, and marketing conversion. Analytics is used for the marketing website, not to generate workouts.',
-          'Google Analytics may process technical information such as page URL, referrer, approximate location, device/browser information, and interaction events. WODIQ configures IP anonymization where supported.'
+          'WODIQ uses Google Analytics 4 on wodiq.nl when website analytics is enabled for the production build. Analytics helps understand aggregate website traffic, page usage, language choice, and TestFlight or web-app CTA clicks.',
+          'Website analytics is used for the marketing website, not to generate workouts. Google Analytics may process technical information such as page URL, referrer, approximate location, device/browser information, and interaction events. WODIQ configures IP anonymization where supported.'
         ]
       },
       {
@@ -148,8 +148,8 @@ export const privacyContent: Record<Locale, LegalContent> = {
       {
         title: 'Website-analyse',
         body: [
-          'WODIQ kan Google Analytics 4 gebruiken op wodiq.nl om geaggregeerd websiteverkeer, paginagebruik en marketingconversie te begrijpen. Analytics wordt gebruikt voor de marketingwebsite, niet om workouts te genereren.',
-          'Google Analytics kan technische informatie verwerken zoals pagina-URL, referrer, globale locatie, device/browserinformatie en interactie-events. WODIQ configureert IP-anonimisering waar dit wordt ondersteund.'
+          'WODIQ gebruikt Google Analytics 4 op wodiq.nl wanneer website-analyse is ingeschakeld voor de production build. Analytics helpt om geaggregeerd websiteverkeer, paginagebruik, taalkeuze en TestFlight- of webapp-CTA-kliks te begrijpen.',
+          'Website-analyse wordt gebruikt voor de marketingwebsite, niet om workouts te genereren. Google Analytics kan technische informatie verwerken zoals pagina-URL, referrer, globale locatie, device/browserinformatie en interactie-events. WODIQ configureert IP-anonimisering waar dit wordt ondersteund.'
         ]
       },
       {
