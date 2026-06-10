@@ -1,0 +1,26 @@
+name: wodiq-site-deploy-production
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  packages: write
+  security-events: write
+
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
+
+jobs:
+  deploy:
+    uses: marcel-tuinstra/devops/.github/workflows/reusable-cd-nuxt-ssg.yml@v1
+    secrets: inherit
+    with:
+      service-name: wodiq-site
+      image-name: ghcr.io/marcel-tuinstra/wodiq-site
+      environment: production
+      remote-path: /mnt/ssd1000-01/projects/wodiq-site/production
+      ssh-user: mtuinstra
+      dockerfile: Dockerfile
+      compose-file: docker-compose.production.yml

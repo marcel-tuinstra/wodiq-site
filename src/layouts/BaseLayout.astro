@@ -1,0 +1,79 @@
+---
+import '../styles/global.css'
+import { absoluteUrl, site, type Locale } from '../data/site'
+
+type Props = {
+  title: string
+  description: string
+  locale: Locale
+  path: string
+  alternatePath: string
+  schema?: Record<string, unknown>[]
+}
+
+const { title, description, locale, path, alternatePath, schema = [] } = Astro.props
+const canonical = absoluteUrl(path)
+const alternate = absoluteUrl(alternatePath)
+const defaultUrl = absoluteUrl(locale === 'en' ? path : alternatePath)
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID
+const allSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.name,
+    url: site.origin,
+    logo: absoluteUrl('/icon.svg')
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: site.name,
+    url: site.origin
+  },
+  ...schema
+]
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={locale} href={canonical} />
+    <link rel="alternate" hreflang={locale === 'en' ? 'nl' : 'en'} href={alternate} />
+    <link rel="alternate" hreflang="x-default" href={defaultUrl} />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={absoluteUrl(site.socialImage)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteUrl(site.socialImage)} />
+    <meta name="theme-color" content="#f7f5ef" />
+    {gaMeasurementId && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline define:vars={{ gaMeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaMeasurementId, { anonymize_ip: true });
+        </script>
+      </>
+    )}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(allSchema)} />
+  </head>
+  <body>
+    <div class="page-shell">
+      <slot />
+    </div>
+  </body>
+</html>

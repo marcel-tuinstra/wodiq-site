@@ -1,0 +1,16 @@
+name: wodiq-site-ci
+
+on:
+  pull_request:
+
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
+
+jobs:
+  ci:
+    uses: marcel-tuinstra/devops/.github/workflows/reusable-ci.yml@v1
+    with:
+      node-version: "22"
+      workdir: "."
+      install-command: npm ci
+      test-command: npm run test

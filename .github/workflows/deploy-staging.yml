@@ -1,0 +1,27 @@
+name: wodiq-site-deploy-staging
+
+on:
+  workflow_dispatch: # Manual trigger only - staging disabled
+  # push:
+  #   branches: [develop]
+
+permissions:
+  contents: read
+  packages: write
+  security-events: write
+
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
+
+jobs:
+  deploy:
+    uses: marcel-tuinstra/devops/.github/workflows/reusable-cd-nuxt-ssg.yml@v1
+    secrets: inherit
+    with:
+      service-name: wodiq-site
+      image-name: ghcr.io/marcel-tuinstra/wodiq-site
+      environment: staging
+      remote-path: /mnt/ssd1000-01/projects/wodiq-site/staging
+      ssh-user: mtuinstra
+      dockerfile: Dockerfile
+      compose-file: docker-compose.staging.yml

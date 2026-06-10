@@ -1,0 +1,45 @@
+---
+import HomePage from '../../components/HomePage.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { homeContent } from '../../data/home'
+import { site } from '../../data/site'
+
+const locale = 'nl'
+const t = homeContent[locale]
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: t.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer
+    }
+  }))
+}
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: site.name,
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web, iOS',
+  url: site.appUrl,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR'
+  }
+}
+---
+
+<BaseLayout
+  title={t.seo.title}
+  description={t.seo.description}
+  locale={locale}
+  path="/nl/"
+  alternatePath="/"
+  schema={[appSchema, faqSchema]}
+>
+  <HomePage locale={locale} />
+</BaseLayout>

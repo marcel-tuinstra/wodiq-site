@@ -1,0 +1,26 @@
+---
+import { localePaths, site, type Locale } from '../data/site'
+import type { HomeContent } from '../data/home'
+
+type Props = {
+  locale: Locale
+  nav: HomeContent['nav']
+}
+
+const { locale, nav } = Astro.props
+const current = localePaths[locale]
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <strong>{site.name}</strong>
+      <div>{locale === 'en' ? 'AI workout planner for what to train today.' : 'AI workoutplanner voor wat je vandaag traint.'}</div>
+    </div>
+    <div class="footer-links">
+      <a href={current.privacy}>{nav.privacy}</a>
+      <a href={current.terms}>{nav.terms}</a>
+      <a href={`mailto:${site.supportEmail}`}>Contact</a>
+    </div>
+  </div>
+</footer>

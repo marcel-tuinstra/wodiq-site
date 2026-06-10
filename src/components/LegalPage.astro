@@ -1,0 +1,34 @@
+---
+import type { LegalContent } from '../data/legal'
+import type { Locale } from '../data/site'
+import SiteFooter from './SiteFooter.astro'
+import SiteHeader from './SiteHeader.astro'
+import { homeContent } from '../data/home'
+
+type Props = {
+  locale: Locale
+  content: LegalContent
+}
+
+const { locale, content } = Astro.props
+const nav = homeContent[locale].nav
+---
+
+<SiteHeader locale={locale} nav={nav} />
+
+<main class="container legal-page">
+  <article class="legal-card">
+    <p class="eyebrow">{locale === 'en' ? 'Legal' : 'Juridisch'}</p>
+    <h1>{content.title}</h1>
+    <p class="lede">{content.description}</p>
+    <div class="legal-meta">{content.updated}</div>
+    {content.sections.map((section) => (
+      <section class="legal-section">
+        <h2>{section.title}</h2>
+        {section.body.map((paragraph) => <p>{paragraph}</p>)}
+      </section>
+    ))}
+  </article>
+</main>
+
+<SiteFooter locale={locale} nav={nav} />

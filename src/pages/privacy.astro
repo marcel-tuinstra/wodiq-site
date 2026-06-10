@@ -1,0 +1,21 @@
+---
+import LegalPage from '../components/LegalPage.astro'
+import { privacyContent } from '../data/legal'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { absoluteUrl } from '../data/site'
+
+const locale = 'en'
+const content = privacyContent[locale]
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'PrivacyPolicy',
+  name: content.title,
+  description: content.description,
+  url: absoluteUrl('/privacy/'),
+  dateModified: '2026-06-01'
+}
+---
+
+<BaseLayout title={`${content.title} | WODIQ`} description={content.description} locale={locale} path="/privacy/" alternatePath="/nl/privacy/" schema={[schema]}>
+  <LegalPage locale={locale} content={content} />
+</BaseLayout>

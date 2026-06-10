@@ -1,0 +1,21 @@
+---
+import LegalPage from '../../components/LegalPage.astro'
+import { termsContent } from '../../data/legal'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { absoluteUrl } from '../../data/site'
+
+const locale = 'nl'
+const content = termsContent[locale]
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: content.title,
+  description: content.description,
+  url: absoluteUrl('/nl/terms/'),
+  dateModified: '2026-06-09'
+}
+---
+
+<BaseLayout title={`${content.title} | WODIQ`} description={content.description} locale={locale} path="/nl/terms/" alternatePath="/terms/" schema={[schema]}>
+  <LegalPage locale={locale} content={content} />
+</BaseLayout>

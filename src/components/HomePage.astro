@@ -1,0 +1,167 @@
+---
+import planGoal from '../assets/screenshots/en-mobile-plan-goal.png'
+import configureWorkout from '../assets/screenshots/en-mobile-configure-workout.png'
+import activities from '../assets/screenshots/en-mobile-activities.png'
+import nlPlanGoal from '../assets/screenshots/nl-mobile-plan-goal.png'
+import nlConfigureWorkout from '../assets/screenshots/nl-mobile-configure-workout.png'
+import nlActivities from '../assets/screenshots/nl-mobile-activities.png'
+import { homeContent } from '../data/home'
+import { site, type Locale } from '../data/site'
+import SiteHeader from './SiteHeader.astro'
+import SiteFooter from './SiteFooter.astro'
+
+type Props = {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const t = homeContent[locale]
+const localeScreenshots = locale === 'nl'
+  ? [nlPlanGoal, nlConfigureWorkout, nlActivities]
+  : [planGoal, configureWorkout, activities]
+const screenshots = [
+  { src: localeScreenshots[0], alt: t.proof.captions[0], caption: t.proof.captions[0] },
+  { src: localeScreenshots[1], alt: t.proof.captions[1], caption: t.proof.captions[1] },
+  { src: localeScreenshots[2], alt: t.proof.captions[2], caption: t.proof.captions[2] }
+]
+---
+
+<SiteHeader locale={locale} nav={t.nav} />
+
+<main class={`locale-${locale}`}>
+  <section class="container hero">
+    <div>
+      <p class="eyebrow">{t.hero.eyebrow}</p>
+      <h1 class="hero-title">{t.hero.title}</h1>
+      <p class="lede">{t.hero.description}</p>
+      <div class="hero-actions">
+        <a class="button button-amber" href={site.betaUrl}>{t.hero.primaryCta}</a>
+        <a class="text-button" href={site.appUrl}>{t.hero.secondaryCta}</a>
+      </div>
+      <ul class="trust-row" aria-label={locale === 'en' ? 'Highlights' : 'Highlights'}>
+        {t.hero.trust.map((item) => <li class="chip">{item}</li>)}
+      </ul>
+    </div>
+    <div class="hero-board" aria-label={locale === 'en' ? 'WODIQ app preview' : 'WODIQ app voorbeeld'}>
+      <div class="phone-frame">
+        <img src={localeScreenshots[0].src} width={localeScreenshots[0].width} height={localeScreenshots[0].height} alt={locale === 'en' ? 'WODIQ app screen for choosing a goal or sport.' : 'WODIQ appscherm om een doel of sport te kiezen.'} loading="eager" decoding="async" />
+      </div>
+      <div class="floating-card">
+        <div class="mini-progress"><span></span></div>
+        <h3>{locale === 'en' ? 'Structured output' : 'Gestructureerde output'}</h3>
+        <p>{locale === 'en' ? 'Warm-up, main block, cooldown, duration, effort cues, and a clear reason for the session.' : 'Warm-up, hoofdblok, cooldown, duur, inspanningscue en een duidelijke reden voor de sessie.'}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">{t.workflow.eyebrow}</p>
+        <h2>{t.workflow.title}</h2>
+      </div>
+      <div class="steps-grid">
+        {t.workflow.items.map((item, index) => (
+          <article class="panel step-card">
+            <div class="step-number">{index + 1}</div>
+            <h3>{item.title}</h3>
+            <p class="muted">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">{t.proof.eyebrow}</p>
+        <h2>{t.proof.title}</h2>
+        <p>{t.proof.text}</p>
+      </div>
+      <div class="screenshots">
+        {screenshots.map((shot) => (
+          <figure class="screenshot-card">
+            <img src={shot.src.src} width={shot.src.width} height={shot.src.height} alt={shot.alt} loading="eager" decoding="async" />
+            <figcaption>{shot.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">{t.comparison.eyebrow}</p>
+        <h2>{t.comparison.title}</h2>
+      </div>
+      <div class="comparison-grid">
+        {t.comparison.items.map((item) => (
+          <article class="panel comparison-card">
+            <strong>{item.competitor}</strong>
+            <div class="comparison-row">
+              <p><span>{locale === 'en' ? 'They offer' : 'Zij bieden'}</span>{item.they}</p>
+              <p><span>WODIQ</span>{item.wodiq}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="section pricing-section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">{t.pricing.eyebrow}</p>
+        <h2>{t.pricing.title}</h2>
+        <p>{t.pricing.description}</p>
+      </div>
+      <div class="pricing-grid">
+        {t.pricing.plans.map((plan, index) => (
+          <article class:list={['price-card', index === 1 && 'featured']}>
+            {plan.badge && <div class="badge">{plan.badge}</div>}
+            <h3>{plan.name}</h3>
+            <div class="price">{plan.price}<span>/ {plan.period}</span></div>
+            <p class="muted">{plan.description}</p>
+            <ul class="feature-list">
+              {plan.features.map((feature) => <li>{feature}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p class="pricing-note">{t.pricing.note}</p>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">{t.faq.eyebrow}</p>
+        <h2>{t.faq.title}</h2>
+      </div>
+      <div class="faq-grid">
+        {t.faq.items.map((item) => (
+          <article class="panel faq-item">
+            <h3>{item.question}</h3>
+            <p class="muted">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-panel">
+        <div>
+          <h2>{t.finalCta.title}</h2>
+          <p>{t.finalCta.text}</p>
+        </div>
+        <a class="button button-amber" href={site.betaUrl}>{t.finalCta.primaryCta}</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<SiteFooter locale={locale} nav={t.nav} />

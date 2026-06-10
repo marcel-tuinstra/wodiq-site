@@ -1,0 +1,30 @@
+---
+import { localePaths, site, type Locale } from '../data/site'
+import type { HomeContent } from '../data/home'
+
+type Props = {
+  locale: Locale
+  nav: HomeContent['nav']
+}
+
+const { locale, nav } = Astro.props
+const current = localePaths[locale]
+const alternate = locale === 'en' ? localePaths.nl.home : localePaths.en.home
+---
+
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href={current.home}>
+      <img src="/icon.svg" alt="" width="34" height="34" />
+      <span>{site.name}</span>
+    </a>
+    <div class="nav-links">
+      <a href={`${current.home}#how-it-works`}>{nav.features}</a>
+      <a href={`${current.home}#pricing`}>{nav.pricing}</a>
+      <a href={`${current.home}#faq`}>{nav.faq}</a>
+      <a href={current.privacy}>{nav.privacy}</a>
+      <a class="language-toggle" href={alternate}>{nav.language}</a>
+      <a class="button button-primary" href={site.betaUrl}>{locale === 'en' ? 'TestFlight' : 'TestFlight'}</a>
+    </div>
+  </nav>
+</header>
