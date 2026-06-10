@@ -8,7 +8,6 @@
 - Confirm `wodiq.app` keeps product app traffic separate.
 - Confirm GitHub Actions secrets/vars are available through `marcel-tuinstra/devops`.
 - Confirm `PUBLIC_GA_MEASUREMENT_ID` is configured as a repository variable if GA should be enabled.
-- Confirm the deploy workflow passes `PUBLIC_GA_MEASUREMENT_ID` as a Docker build arg before expecting GA in production HTML.
 - Confirm GHCR package permissions for `ghcr.io/marcel-tuinstra/wodiq-site`.
 
 ## Validation
