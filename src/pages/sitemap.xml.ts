@@ -2,12 +2,12 @@ import type { APIRoute } from 'astro'
 import { absoluteUrl, localePaths } from '../data/site'
 
 const paths = [
-  localePaths.en.home,
   localePaths.nl.home,
-  localePaths.en.privacy,
-  localePaths.en.terms,
+  localePaths.en.home,
   localePaths.nl.privacy,
-  localePaths.nl.terms
+  localePaths.nl.terms,
+  localePaths.en.privacy,
+  localePaths.en.terms
 ]
 
 const lastmod = new Date().toISOString()

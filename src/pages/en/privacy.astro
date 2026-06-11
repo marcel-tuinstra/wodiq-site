@@ -4,18 +4,18 @@ import { privacyContent } from '../../data/legal'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { absoluteUrl } from '../../data/site'
 
-const locale = 'nl'
+const locale = 'en'
 const content = privacyContent[locale]
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'PrivacyPolicy',
   name: content.title,
   description: content.description,
-  url: absoluteUrl('/nl/privacy/'),
+  url: absoluteUrl('/en/privacy/'),
   dateModified: '2026-06-01'
 }
 ---
 
-<BaseLayout title={`${content.title} | WODIQ`} description={content.description} locale={locale} path="/nl/privacy/" alternatePath="/privacy/" schema={[schema]}>
+<BaseLayout title={`${content.title} | WODIQ`} description={content.description} locale={locale} path="/en/privacy/" alternatePath="/privacy/" schema={[schema]}>
   <LegalPage locale={locale} content={content} />
 </BaseLayout>

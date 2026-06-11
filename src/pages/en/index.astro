@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import { homeContent } from '../../data/home'
 import { site } from '../../data/site'
 
-const locale = 'nl'
+const locale = 'en'
 const t = homeContent[locale]
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -37,7 +37,7 @@ const appSchema = {
   title={t.seo.title}
   description={t.seo.description}
   locale={locale}
-  path="/nl/"
+  path="/en/"
   alternatePath="/"
   schema={[appSchema, faqSchema]}
 >

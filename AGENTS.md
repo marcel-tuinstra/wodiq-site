@@ -38,8 +38,8 @@ Preserve WODIQ's light-mode visual language unless the app tokens are intentiona
 
 ## Content And SEO
 
-- Keep English as the default route and Dutch under `/nl/`.
-- Publish canonical legal pages at `/privacy`, `/terms`, `/nl/privacy`, and `/nl/terms`.
+- Keep Dutch as the default route and English under `/en/`.
+- Publish canonical legal pages at `/privacy`, `/terms`, `/en/privacy`, and `/en/terms`.
 - Use visible FAQ content when emitting FAQ schema.
 - Keep claims practical and non-medical. WODIQ provides training guidance, not medical advice.
 - Do not publicly market Strava as active until the app enables it.

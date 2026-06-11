@@ -1,5 +1,5 @@
 ---
-import { localePaths, site, type Locale } from '../data/site'
+import { alternateLocalePath, localePaths, site, type Locale } from '../data/site'
 import type { HomeContent } from '../data/home'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 const { locale, nav } = Astro.props
 const current = localePaths[locale]
-const alternate = locale === 'en' ? localePaths.nl.home : localePaths.en.home
+const alternate = alternateLocalePath(locale, Astro.url.pathname)
 ---
 
 <header class="site-header">

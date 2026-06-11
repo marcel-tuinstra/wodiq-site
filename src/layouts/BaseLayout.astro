@@ -14,7 +14,7 @@ type Props = {
 const { title, description, locale, path, alternatePath, schema = [] } = Astro.props
 const canonical = absoluteUrl(path)
 const alternate = absoluteUrl(alternatePath)
-const defaultUrl = absoluteUrl(locale === 'en' ? path : alternatePath)
+const defaultUrl = absoluteUrl(locale === 'nl' ? path : alternatePath)
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID
 const allSchema = [
   {

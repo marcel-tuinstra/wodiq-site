@@ -23,9 +23,11 @@ curl -I http://localhost:3014/
 ## Post-Deploy Checks
 
 - `https://wodiq.nl/`
-- `https://wodiq.nl/nl/`
+- `https://wodiq.nl/en/`
 - `https://wodiq.nl/privacy/`
 - `https://wodiq.nl/terms/`
+- `https://wodiq.nl/en/privacy/`
+- `https://wodiq.nl/en/terms/`
 - `https://wodiq.nl/robots.txt`
 - `https://wodiq.nl/sitemap-index.xml`
 - Open Graph preview uses `https://wodiq.nl/social-card.png`.

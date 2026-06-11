@@ -4,8 +4,10 @@ WODIQ is an AI workout planner for choosing what to train today. The marketing a
 
 ## Key Pages
 
-- [Homepage](https://wodiq.nl/)
-- [Dutch homepage](https://wodiq.nl/nl/)
+- [Dutch homepage](https://wodiq.nl/)
+- [English homepage](https://wodiq.nl/en/)
 - [Privacy policy](https://wodiq.nl/privacy/)
+- [English privacy policy](https://wodiq.nl/en/privacy/)
 - [Terms](https://wodiq.nl/terms/)
+- [English terms](https://wodiq.nl/en/terms/)
 - [TestFlight pilot](https://testflight.apple.com/join/VHNX9gkJ)

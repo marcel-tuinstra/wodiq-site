@@ -65,7 +65,7 @@ During the TestFlight and pilot phase, WODIQ is free to use with limits. Pricing
 
 ## Content
 
-- Default language: English at `/`
-- Dutch: `/nl/`
-- Legal pages: `/privacy/`, `/terms/`, `/nl/privacy/`, `/nl/terms/`
+- Default language: Dutch at `/`
+- English: `/en/`
+- Legal pages: `/privacy/`, `/terms/`, `/en/privacy/`, `/en/terms/`
 - Market notes: [docs/market-positioning.md](docs/market-positioning.md)

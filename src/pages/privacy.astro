@@ -4,7 +4,7 @@ import { privacyContent } from '../data/legal'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { absoluteUrl } from '../data/site'
 
-const locale = 'en'
+const locale = 'nl'
 const content = privacyContent[locale]
 const schema = {
   '@context': 'https://schema.org',
@@ -16,6 +16,6 @@ const schema = {
 }
 ---
 
-<BaseLayout title={`${content.title} | WODIQ`} description={content.description} locale={locale} path="/privacy/" alternatePath="/nl/privacy/" schema={[schema]}>
+<BaseLayout title={`${content.title} | WODIQ`} description={content.description} locale={locale} path="/privacy/" alternatePath="/en/privacy/" schema={[schema]}>
   <LegalPage locale={locale} content={content} />
 </BaseLayout>
