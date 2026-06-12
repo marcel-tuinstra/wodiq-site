@@ -1,5 +1,6 @@
 ---
 import type { Locale } from '../data/site'
+import Icon from './Icon.astro'
 
 type Props = {
   locale: Locale
@@ -35,10 +36,18 @@ const copy = {
 
 {gaMeasurementId && (
   <>
-    <button class="cookie-manage" type="button" hidden data-cookie-manage>{copy.manage}</button>
+    <button class="cookie-manage" type="button" hidden data-cookie-manage>
+      <Icon name="cookie" />
+      <span>{copy.manage}</span>
+    </button>
     <section class="cookie-consent" data-cookie-consent hidden aria-label={copy.title}>
       <div class="cookie-copy">
-        <h2>{copy.title}</h2>
+        <div class="cookie-heading">
+          <span class="icon-tile">
+            <Icon name="cookie" />
+          </span>
+          <h2>{copy.title}</h2>
+        </div>
         <p>{copy.intro}</p>
       </div>
       <div class="cookie-options" data-cookie-options hidden>

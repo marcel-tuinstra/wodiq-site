@@ -1,0 +1,93 @@
+---
+type IconName =
+  | 'activity'
+  | 'arrow'
+  | 'check'
+  | 'clock'
+  | 'cookie'
+  | 'list'
+  | 'question'
+  | 'settings'
+  | 'shield'
+  | 'target'
+
+type Props = {
+  name: IconName
+  class?: string
+}
+
+const { name, class: className } = Astro.props
+---
+
+<svg class:list={['icon', className]} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  {name === 'activity' && (
+    <>
+      <path d="M3.5 12h3l2-5 4 10 2.5-5h5.5" />
+      <path d="M18.5 5.5a2 2 0 1 1-2 2" />
+    </>
+  )}
+  {name === 'arrow' && (
+    <>
+      <path d="M5 12h13" />
+      <path d="m13 6 6 6-6 6" />
+    </>
+  )}
+  {name === 'check' && <path d="m5 12.5 4.2 4.2L19 7" />}
+  {name === 'clock' && (
+    <>
+      <circle cx="12" cy="12" r="8" />
+      <path d="M12 7.5V12l3 2" />
+    </>
+  )}
+  {name === 'cookie' && (
+    <>
+      <path d="M19.4 10.5a5.1 5.1 0 0 1-5.9-5.9 7.8 7.8 0 1 0 5.9 5.9Z" />
+      <path d="M8.7 10.2h.1" />
+      <path d="M11.3 16.1h.1" />
+      <path d="M14.7 12.7h.1" />
+    </>
+  )}
+  {name === 'list' && (
+    <>
+      <path d="M8 7h11" />
+      <path d="M8 12h11" />
+      <path d="M8 17h11" />
+      <path d="M4.5 7h.1" />
+      <path d="M4.5 12h.1" />
+      <path d="M4.5 17h.1" />
+    </>
+  )}
+  {name === 'question' && (
+    <>
+      <circle cx="12" cy="12" r="8" />
+      <path d="M9.8 9.5a2.4 2.4 0 0 1 4.5 1.2c0 1.8-2.3 2.1-2.3 3.7" />
+      <path d="M12 17.1h.1" />
+    </>
+  )}
+  {name === 'settings' && (
+    <>
+      <path d="M5 7h8" />
+      <path d="M17 7h2" />
+      <path d="M5 12h2" />
+      <path d="M11 12h8" />
+      <path d="M5 17h10" />
+      <path d="M19 17h0" />
+      <circle cx="15" cy="7" r="2" />
+      <circle cx="9" cy="12" r="2" />
+      <circle cx="17" cy="17" r="2" />
+    </>
+  )}
+  {name === 'shield' && (
+    <>
+      <path d="M12 4.5 18.5 7v4.6c0 4.1-2.7 6.6-6.5 8-3.8-1.4-6.5-3.9-6.5-8V7L12 4.5Z" />
+      <path d="m9.2 12 1.9 1.9 3.8-4" />
+    </>
+  )}
+  {name === 'target' && (
+    <>
+      <circle cx="12" cy="12" r="8" />
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 12h8" />
+    </>
+  )}
+</svg>
