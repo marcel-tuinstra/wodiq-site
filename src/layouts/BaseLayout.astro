@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css'
 import { absoluteUrl, site, type Locale } from '../data/site'
+import CookieConsent from '../components/CookieConsent.astro'
 
 type Props = {
   title: string
@@ -58,36 +59,12 @@ const allSchema = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteUrl(site.socialImage)} />
     <meta name="theme-color" content="#f7f5ef" />
-    {gaMeasurementId && (
-      <>
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
-        <script is:inline define:vars={{ gaMeasurementId }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', gaMeasurementId, { anonymize_ip: true });
-          document.addEventListener('click', function (event) {
-            const link = event.target.closest('[data-analytics]');
-
-            if (!link) {
-              return;
-            }
-
-            gtag('event', 'cta_click', {
-              event_category: 'marketing',
-              cta_id: link.dataset.analytics,
-              link_text: link.textContent.trim(),
-              link_url: link.href
-            });
-          });
-        </script>
-      </>
-    )}
     <script is:inline type="application/ld+json" set:html={JSON.stringify(allSchema)} />
   </head>
   <body>
     <div class="page-shell">
       <slot />
     </div>
+    <CookieConsent locale={locale} gaMeasurementId={gaMeasurementId} />
   </body>
 </html>

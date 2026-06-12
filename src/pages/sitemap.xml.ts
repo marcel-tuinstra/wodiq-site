@@ -1,16 +1,14 @@
 import type { APIRoute } from 'astro'
 import { absoluteUrl, localePaths } from '../data/site'
 
-const paths = [
-  localePaths.nl.home,
-  localePaths.en.home,
-  localePaths.nl.privacy,
-  localePaths.nl.terms,
-  localePaths.en.privacy,
-  localePaths.en.terms
+const pages = [
+  { path: localePaths.nl.home, lastmod: '2026-06-12' },
+  { path: localePaths.en.home, lastmod: '2026-06-12' },
+  { path: localePaths.nl.privacy, lastmod: '2026-06-12' },
+  { path: localePaths.nl.terms, lastmod: '2026-06-12' },
+  { path: localePaths.en.privacy, lastmod: '2026-06-12' },
+  { path: localePaths.en.terms, lastmod: '2026-06-12' }
 ]
-
-const lastmod = new Date().toISOString()
 
 function escapeXml(value: string) {
   return value
@@ -22,11 +20,11 @@ function escapeXml(value: string) {
 }
 
 export const GET: APIRoute = () => {
-  const urls = paths
-    .map((path) => [
+  const urls = pages
+    .map((page) => [
       '  <url>',
-      `    <loc>${escapeXml(absoluteUrl(path))}</loc>`,
-      `    <lastmod>${lastmod}</lastmod>`,
+      `    <loc>${escapeXml(absoluteUrl(page.path))}</loc>`,
+      `    <lastmod>${page.lastmod}</lastmod>`,
       '  </url>'
     ].join('\n'))
     .join('\n')
