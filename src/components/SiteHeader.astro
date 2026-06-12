@@ -23,6 +23,7 @@ const alternate = alternateLocalePath(locale, Astro.url.pathname)
       <a href={`${current.home}#pricing`}>{nav.pricing}</a>
       <a href={`${current.home}#faq`}>{nav.faq}</a>
       <a href={current.privacy}>{nav.privacy}</a>
+      <a href={current.terms}>{nav.terms}</a>
       <a class="language-toggle" href={alternate} data-analytics="language_switch">{nav.language}</a>
       <a class="button button-primary" href={site.betaUrl} data-analytics="header_testflight">{locale === 'en' ? 'TestFlight' : 'TestFlight'}</a>
     </div>

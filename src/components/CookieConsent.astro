@@ -1,0 +1,170 @@
+---
+import type { Locale } from '../data/site'
+
+type Props = {
+  locale: Locale
+  gaMeasurementId?: string
+}
+
+const { locale, gaMeasurementId } = Astro.props
+const copy = {
+  en: {
+    title: 'Cookie preferences',
+    intro: 'WODIQ uses necessary storage for this site. Analytics cookies are optional and help us improve the marketing pages.',
+    customize: 'Customize',
+    reject: 'Reject all',
+    accept: 'Accept all',
+    save: 'Save preferences',
+    analyticsTitle: 'Analytics cookies',
+    analyticsBody: 'Allow Google Analytics 4 to measure page usage, language choice, and TestFlight or web-app CTA clicks.',
+    manage: 'Cookie preferences'
+  },
+  nl: {
+    title: 'Cookievoorkeuren',
+    intro: 'WODIQ gebruikt noodzakelijke opslag voor deze site. Analytics-cookies zijn optioneel en helpen de marketingpagina’s te verbeteren.',
+    customize: 'Aanpassen',
+    reject: 'Alles weigeren',
+    accept: 'Alles accepteren',
+    save: 'Voorkeuren opslaan',
+    analyticsTitle: 'Analytics-cookies',
+    analyticsBody: 'Sta Google Analytics 4 toe om paginagebruik, taalkeuze en TestFlight- of webapp-CTA-kliks te meten.',
+    manage: 'Cookievoorkeuren'
+  }
+}[locale]
+---
+
+{gaMeasurementId && (
+  <>
+    <button class="cookie-manage" type="button" hidden data-cookie-manage>{copy.manage}</button>
+    <section class="cookie-consent" data-cookie-consent hidden aria-label={copy.title}>
+      <div class="cookie-copy">
+        <h2>{copy.title}</h2>
+        <p>{copy.intro}</p>
+      </div>
+      <div class="cookie-options" data-cookie-options hidden>
+        <label class="cookie-toggle">
+          <input type="checkbox" data-cookie-analytics />
+          <span>
+            <strong>{copy.analyticsTitle}</strong>
+            <small>{copy.analyticsBody}</small>
+          </span>
+        </label>
+      </div>
+      <div class="cookie-actions">
+        <button class="button button-amber" type="button" data-cookie-accept>{copy.accept}</button>
+        <button class="text-button" type="button" data-cookie-reject>{copy.reject}</button>
+        <button class="cookie-link-button" type="button" data-cookie-customize>{copy.customize}</button>
+        <button class="button button-primary" type="button" data-cookie-save hidden>{copy.save}</button>
+      </div>
+    </section>
+    <script is:inline define:vars={{ gaMeasurementId }}>
+      (() => {
+        const storageKey = 'wodiq_cookie_preferences';
+        const consent = document.querySelector('[data-cookie-consent]');
+        const manageButton = document.querySelector('[data-cookie-manage]');
+        const options = document.querySelector('[data-cookie-options]');
+        const analyticsInput = document.querySelector('[data-cookie-analytics]');
+        const acceptButton = document.querySelector('[data-cookie-accept]');
+        const rejectButton = document.querySelector('[data-cookie-reject]');
+        const customizeButton = document.querySelector('[data-cookie-customize]');
+        const saveButton = document.querySelector('[data-cookie-save]');
+        let analyticsLoaded = false;
+
+        if (!consent || !manageButton || !options || !analyticsInput || !acceptButton || !rejectButton || !customizeButton || !saveButton) {
+          return;
+        }
+
+        function readPreferences() {
+          try {
+            return JSON.parse(window.localStorage.getItem(storageKey) || 'null');
+          } catch {
+            return null;
+          }
+        }
+
+        function writePreferences(analytics) {
+          const value = {
+            analytics,
+            updatedAt: new Date().toISOString()
+          };
+          window.localStorage.setItem(storageKey, JSON.stringify(value));
+          return value;
+        }
+
+        function loadAnalytics() {
+          if (analyticsLoaded || !gaMeasurementId) {
+            return;
+          }
+
+          analyticsLoaded = true;
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', gaMeasurementId, { anonymize_ip: true });
+
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaMeasurementId)}`;
+          document.head.appendChild(script);
+        }
+
+        function hideBanner() {
+          consent.hidden = true;
+          manageButton.hidden = false;
+        }
+
+        function showBanner() {
+          consent.hidden = false;
+          manageButton.hidden = true;
+        }
+
+        function applyPreferences(preferences) {
+          analyticsInput.checked = Boolean(preferences?.analytics);
+
+          if (preferences?.analytics) {
+            loadAnalytics();
+          }
+        }
+
+        function choose(analytics) {
+          applyPreferences(writePreferences(analytics));
+          hideBanner();
+        }
+
+        acceptButton.addEventListener('click', () => choose(true));
+        rejectButton.addEventListener('click', () => choose(false));
+        saveButton.addEventListener('click', () => choose(analyticsInput.checked));
+        customizeButton.addEventListener('click', () => {
+          options.hidden = false;
+          saveButton.hidden = false;
+          customizeButton.hidden = true;
+        });
+        manageButton.addEventListener('click', showBanner);
+
+        document.addEventListener('click', (event) => {
+          const link = event.target.closest('[data-analytics]');
+
+          if (!analyticsLoaded || !link || typeof window.gtag !== 'function') {
+            return;
+          }
+
+          window.gtag('event', 'cta_click', {
+            event_category: 'marketing',
+            cta_id: link.dataset.analytics,
+            link_text: link.textContent.trim(),
+            link_url: link.href
+          });
+        });
+
+        const preferences = readPreferences();
+
+        if (preferences) {
+          applyPreferences(preferences);
+          hideBanner();
+        } else {
+          showBanner();
+        }
+      })();
+    </script>
+  </>
+)}
