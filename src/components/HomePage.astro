@@ -8,6 +8,7 @@ import nlConfigureWorkout from '../assets/screenshots/nl-mobile-configure-workou
 import nlActivities from '../assets/screenshots/nl-mobile-activities.png'
 import { homeContent } from '../data/home'
 import { site, type Locale } from '../data/site'
+import Icon from './Icon.astro'
 import SiteHeader from './SiteHeader.astro'
 import SiteFooter from './SiteFooter.astro'
 
@@ -25,6 +26,9 @@ const screenshots = [
   { src: localeScreenshots[1], alt: t.proof.captions[1], caption: t.proof.captions[1] },
   { src: localeScreenshots[2], alt: t.proof.captions[2], caption: t.proof.captions[2] }
 ]
+const trustIcons = ['check', 'activity', 'list'] as const
+const workflowIcons = ['clock', 'settings', 'target'] as const
+const faqIcons = ['question', 'activity', 'shield', 'settings'] as const
 ---
 
 <SiteHeader locale={locale} nav={t.nav} />
@@ -36,11 +40,19 @@ const screenshots = [
       <h1 class="hero-title">{t.hero.title}</h1>
       <p class="lede">{t.hero.description}</p>
       <div class="hero-actions">
-        <a class="button button-amber" href={site.betaUrl} data-analytics="hero_testflight">{t.hero.primaryCta}</a>
+        <a class="button button-amber button-with-icon" href={site.betaUrl} data-analytics="hero_testflight">
+          <span>{t.hero.primaryCta}</span>
+          <Icon name="arrow" />
+        </a>
         <a class="text-button" href={site.appUrl} data-analytics="hero_web_app">{t.hero.secondaryCta}</a>
       </div>
       <ul class="trust-row" aria-label={locale === 'en' ? 'Highlights' : 'Highlights'}>
-        {t.hero.trust.map((item) => <li class="chip">{item}</li>)}
+        {t.hero.trust.map((item, index) => (
+          <li class="chip">
+            <Icon name={trustIcons[index]} />
+            <span>{item}</span>
+          </li>
+        ))}
       </ul>
     </div>
     <div class="hero-board" aria-label={locale === 'en' ? 'WODIQ app preview' : 'WODIQ app voorbeeld'}>
@@ -72,7 +84,12 @@ const screenshots = [
       <div class="steps-grid">
         {t.workflow.items.map((item, index) => (
           <article class="panel step-card">
-            <div class="step-number">{index + 1}</div>
+            <div class="step-card-top">
+              <div class="step-number">{index + 1}</div>
+              <span class="icon-tile">
+                <Icon name={workflowIcons[index]} />
+              </span>
+            </div>
             <h3>{item.title}</h3>
             <p class="muted">{item.text}</p>
           </article>
@@ -118,8 +135,20 @@ const screenshots = [
           <article class="panel comparison-card">
             <strong>{item.competitor}</strong>
             <div class="comparison-row">
-              <p><span>{locale === 'en' ? 'They offer' : 'Zij bieden'}</span>{item.they}</p>
-              <p><span>WODIQ</span>{item.wodiq}</p>
+              <p>
+                <span class="comparison-label">
+                  <Icon name="list" />
+                  {locale === 'en' ? 'They offer' : 'Zij bieden'}
+                </span>
+                {item.they}
+              </p>
+              <p>
+                <span class="comparison-label">
+                  <Icon name="target" />
+                  WODIQ
+                </span>
+                {item.wodiq}
+              </p>
             </div>
           </article>
         ))}
@@ -142,7 +171,12 @@ const screenshots = [
             <div class="price">{plan.price}<span>/ {plan.period}</span></div>
             <p class="muted">{plan.description}</p>
             <ul class="feature-list">
-              {plan.features.map((feature) => <li>{feature}</li>)}
+              {plan.features.map((feature) => (
+                <li>
+                  <Icon name="check" />
+                  <span>{feature}</span>
+                </li>
+              ))}
             </ul>
           </article>
         ))}
@@ -158,9 +192,14 @@ const screenshots = [
         <h2>{t.faq.title}</h2>
       </div>
       <div class="faq-grid">
-        {t.faq.items.map((item) => (
+        {t.faq.items.map((item, index) => (
           <article class="panel faq-item">
-            <h3>{item.question}</h3>
+            <div class="faq-heading">
+              <span class="icon-tile icon-tile-muted">
+                <Icon name={faqIcons[index]} />
+              </span>
+              <h3>{item.question}</h3>
+            </div>
             <p class="muted">{item.answer}</p>
           </article>
         ))}
@@ -175,7 +214,10 @@ const screenshots = [
           <h2>{t.finalCta.title}</h2>
           <p>{t.finalCta.text}</p>
         </div>
-        <a class="button button-amber" href={site.betaUrl} data-analytics="final_testflight">{t.finalCta.primaryCta}</a>
+        <a class="button button-amber button-with-icon" href={site.betaUrl} data-analytics="final_testflight">
+          <span>{t.finalCta.primaryCta}</span>
+          <Icon name="arrow" />
+        </a>
       </div>
     </div>
   </section>
