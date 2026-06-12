@@ -12,19 +12,55 @@ type Props = {
 
 const { locale, content } = Astro.props
 const nav = homeContent[locale].nav
+const sectionLabel = locale === 'en' ? 'Section' : 'Artikel'
+const tocLabel = locale === 'en' ? 'Contents' : 'Inhoud'
+const updatedLabel = locale === 'en' ? 'Document status' : 'Documentstatus'
+const sections = content.sections.map((section, index) => ({
+  ...section,
+  number: String(index + 1).padStart(2, '0'),
+  id: section.title
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+}))
 ---
 
 <SiteHeader locale={locale} nav={nav} />
 
 <main class="container legal-page">
+  <aside class="legal-toc" aria-label={tocLabel}>
+    <p>{tocLabel}</p>
+    <ol>
+      {sections.map((section) => (
+        <li>
+          <a href={`#${section.id}`}>
+            <span>{section.number}</span>
+            {section.title}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </aside>
   <article class="legal-card">
-    <p class="eyebrow">{locale === 'en' ? 'Legal' : 'Juridisch'}</p>
-    <h1>{content.title}</h1>
-    <p class="lede">{content.description}</p>
-    <div class="legal-meta">{content.updated}</div>
-    {content.sections.map((section) => (
-      <section class="legal-section">
-        <h2>{section.title}</h2>
+    <header class="legal-hero">
+      <p class="eyebrow">{locale === 'en' ? 'Legal' : 'Juridisch'}</p>
+      <h1>{content.title}</h1>
+      <p class="lede">{content.description}</p>
+      <dl class="legal-meta">
+        <div>
+          <dt>{updatedLabel}</dt>
+          <dd>{content.updated}</dd>
+        </div>
+      </dl>
+    </header>
+    {sections.map((section) => (
+      <section class="legal-section" id={section.id}>
+        <div class="legal-section-heading">
+          <span>{sectionLabel} {section.number}</span>
+          <h2>{section.title}</h2>
+        </div>
         {section.body.map((paragraph) => <p>{paragraph}</p>)}
       </section>
     ))}
