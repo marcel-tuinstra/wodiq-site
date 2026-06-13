@@ -116,7 +116,7 @@ export const homeContent: Record<Locale, HomeContent> = {
         {
           competitor: 'Runna',
           they: 'Race-focused running plans with elite-coach positioning.',
-          wodiq: 'Mixed-session decisions for people who might run, lift, do Hyrox, or need mobility depending on the day.'
+          wodiq: 'Mixed-session decisions for people who might run, lift, do hybrid conditioning, or need mobility depending on the day.'
         },
         {
           competitor: 'Fitbod / JuggernautAI',
@@ -241,7 +241,7 @@ export const homeContent: Record<Locale, HomeContent> = {
         {
           competitor: 'Runna',
           they: 'Hardloopplannen rond races en coaching.',
-          wodiq: 'Gemengde dagkeuzes voor sporters die afhankelijk van de dag willen hardlopen, liften, Hyrox doen of mobility pakken.'
+          wodiq: 'Gemengde dagkeuzes voor sporters die afhankelijk van de dag willen hardlopen, liften, hybride conditietraining doen of mobility pakken.'
         },
         {
           competitor: 'Fitbod / JuggernautAI',

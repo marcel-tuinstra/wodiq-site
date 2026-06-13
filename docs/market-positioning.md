@@ -17,9 +17,9 @@ WODIQ should not compete as another training feed, single-sport plan, or generic
 | Product | What they lead with | WODIQ difference |
 | --- | --- | --- |
 | Runna | Personalized running plans, race goals, device sync, strength and mobility support for runners. | WODIQ is not race-plan-first. It helps mixed-training athletes decide what to train today. |
-| Fitbod | Personalized strength workouts that update with recovery, body, and progress. | WODIQ is broader than lifting progression and can plan across functional fitness, Hyrox, running, cycling, strength, and mobility. |
+| Fitbod | Personalized strength workouts that update with recovery, body, and progress. | WODIQ is broader than lifting progression and can plan across functional fitness, hybrid conditioning, running, cycling, strength, and mobility. |
 | JuggernautAI | Powerlifting and powerbuilding programs, exercise library, form/community support, meet-day support. | WODIQ is less specialized and more useful for the everyday "what are we doing now?" moment. |
-| btwb / gym programming tools | Gym programming, workout tracking, leaderboards, schedules, member progress. | WODIQ is individual decision support, not gym management or a CrossFit logbook. |
+| btwb / gym programming tools | Gym programming, workout tracking, leaderboards, schedules, member progress. | WODIQ is individual decision support, not gym management or a functional fitness logbook. |
 | Strava / Garmin | Tracking, routes, segments, device analytics, training data. | WODIQ turns training context into a workout choice instead of only recording what happened. |
 | ChatGPT / Instagram | Infinite ideas and inspiration, but no productized flow, constraints, history, or saved training context. | WODIQ gives a structured, repeatable flow with usable output. |
 
